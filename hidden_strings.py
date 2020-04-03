@@ -2,7 +2,6 @@
 
 import os
 import subprocess
-import base64
 
 #Function to iterate through all files in a root directory including files in hidden subdirectories.
 def fileiterate(path):
