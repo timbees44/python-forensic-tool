@@ -16,7 +16,7 @@ file_path_tup = tuple(fileiterate(input("please give path to main directory: "))
 #Function to check the type of file for each file found
 def fileinfo(file):
 	for i in file_path_tup:
-		#function wide variables. 3 are terminal commands, 'f' is to take the name of the file from the path
+		#function wide variables. 2 are terminal commands, 'f' is to take the name of the file from the path
 		st = subprocess.check_output(["strings", i]).decode("utf-8")
 		ftype = subprocess.check_output(["file", i]).decode("utf-8")
 		f = i.rsplit('/',1)[-1]
@@ -67,10 +67,11 @@ def fileinfo(file):
 			if "C source" in ftype:
 				print("{} is probably a java file")
 			else:
-				print("{} this is some sort of code file maybe?")
+				print("{} this could be another 'code' file that is labelled wrong")
 			print("Here is the strings output for the .java file. It should be readable so you can check for secrets")
 			print(st)
 		elif "Microsoft" in ftype:
+			#wasn't working with 'ex' variable as global so I moved it to local conditions temporarily
 			ex = subprocess.check_output(["exiftool", i]).decode("utf-8")
 			if f.endswith(".docx"):
 				print("{} is a DOCX file with matching extension".format(f))
@@ -90,7 +91,7 @@ def fileinfo(file):
 				print(ex)
 			print("\n")
 		else:
-			print("{} is a lil funky and you might need to check it out some more because I don't wanna hardcode all file types into this already long script".format(f))
+			print("{} is a different file type. Please investigate it manually".format(f))
 			print("\n")
 
 fileinfo(file_path_tup)
