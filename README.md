@@ -6,7 +6,7 @@ It is designed for my Master's digital forensic subject to find specific and non
 Haven't figured out how to get it to save output yet. 
 
 Temporary method is:
-   python3 fsv2.py |& tee output.txt
+   python3 hidden_strings.py |& tee output.txt
 
 This will the output of the script the .txt file
  
